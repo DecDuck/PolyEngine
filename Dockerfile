@@ -3,6 +3,7 @@ FROM node:hydrogen-alpine3.19 AS build
 
 # build app
 RUN apk add yarn
+RUN apk add python3
 WORKDIR /build
 COPY . .
 RUN yarn
