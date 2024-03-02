@@ -1,5 +1,5 @@
 # set up build environment
-FROM node:lts-alpine AS build
+FROM node:hydrogen-slim AS build
 
 # build app
 RUN apk add yarn
@@ -9,7 +9,7 @@ RUN yarn
 RUN yarn build
 
 # entry point
-FROM node:lts-alpine
+FROM node:hydrogen-slim
 WORKDIR /app
 COPY --from=build /build/.output .
 ENV PORT=5000
