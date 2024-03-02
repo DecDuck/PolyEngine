@@ -6,7 +6,7 @@ const client = new S3Client({
     region: process.env.S3_REGION ?? "auto",
     credentials: {
         accessKeyId: process.env.S3_ACCESS_ID ?? "minioadmin",
-        secretAccessKey: process.env.S3_ACCESSS_KEY ?? "minioadmin"
+        secretAccessKey: process.env.S3_ACCESS_KEY ?? "minioadmin"
     },
 });
 const BUCKET = process.env.S3_BUCKET ?? "polyengine";
