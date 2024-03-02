@@ -263,4 +263,8 @@ const userNavigation = computed(
       href: string;
     }>
 );
+
+useHead({
+  titleTemplate: (title) => title ? `${title} - PolyEngine` : `PolyEngine`
+})
 </script>
