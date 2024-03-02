@@ -36,15 +36,6 @@
             </div>
           </div>
           <div class="hidden sm:ml-6 sm:flex sm:items-center">
-            <button
-              type="button"
-              class="relative rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
-            >
-              <span class="absolute -inset-1.5" />
-              <span class="sr-only">View notifications</span>
-              <BellIcon class="h-6 w-6" aria-hidden="true" />
-            </button>
-
             <!-- Profile dropdown -->
             <Menu as="div" class="relative ml-3">
               <div>
@@ -191,6 +182,24 @@
         </div>
       </main>
     </div>
+
+    <div
+      v-if="user.needsPasswordChange"
+      class="pointer-events-none fixed inset-x-0 bottom-0 sm:px-6 sm:pb-5 lg:px-8"
+    >
+      <div
+        class="pointer-events-auto flex items-center justify-between gap-x-6 bg-gray-900 px-6 py-2.5 sm:rounded-xl sm:py-3 sm:pl-4 sm:pr-3.5"
+      >
+        <p class="text-sm leading-6 text-white">
+          <NuxtLink to="/profile" class="inline-flex items-center gap-x-2">
+            <strong class="font-semibold">Please update your password</strong>
+            <div class="w-[2px] h-[2px] bg-white rounded-full" />
+            Your password was set automatically, and needs to be updated. Click
+            here to go to your profile. <span aria-hidden="true">&rarr;</span>
+          </NuxtLink>
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -221,10 +230,15 @@ const currentRouteIdx = computed(() =>
   navigation.findIndex((e) => route.fullPath.startsWith(e.href))
 );
 
-const user = await useState<{ email: string; isAdmin: boolean }>(
-  "user",
-  () => ({ email: "loading...", isAdmin: false })
-);
+const user = await useState<{
+  email: string;
+  isAdmin: boolean;
+  needsPasswordChange: boolean;
+}>("user", () => ({
+  email: "loading...",
+  isAdmin: false,
+  needsPasswordChange: false,
+}));
 
 user.value = await $fetch("/api/user");
 
@@ -247,9 +261,21 @@ async function sha256(message: string) {
 
 const hash = ref();
 
-sha256(user.value.email).then((e) => {
-  hash.value = e;
-});
+function updateHash() {
+  sha256(user.value.email).then((e) => {
+    hash.value = e;
+  });
+}
+
+updateHash();
+
+watch(
+  user,
+  () => {
+    updateHash();
+  },
+  { deep: true }
+);
 
 const userNavigation = computed(
   () =>
@@ -265,6 +291,6 @@ const userNavigation = computed(
 );
 
 useHead({
-  titleTemplate: (title) => title ? `${title} - PolyEngine` : `PolyEngine`
-})
+  titleTemplate: (title) => (title ? `${title} - PolyEngine` : `PolyEngine`),
+});
 </script>

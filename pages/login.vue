@@ -139,4 +139,8 @@ async function signIn() {
     return false;
   }
 }
+
+useHead({
+  title: "Sign in to Polyengine"
+})
 </script>
