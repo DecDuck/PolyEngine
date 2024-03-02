@@ -1,75 +1,18 @@
-# Nuxt 3 Minimal Starter
+![](./wordmark.png)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# Polyengine
 
-## Setup
+Polyengine is a fully-featured alternative to Polymath, a texture-pack hosting service for Oraxen. It includes managing multiple versions of packs, with automatic retention deletion, different user-accounts and groupings per user.
 
-Make sure to install the dependencies:
+## Features
 
-```bash
-# npm
-npm install
+1. Per-server management
+2. List of all packs currently uploaded
+3. S3 & MongoDB backed
+4. Multiple accounts
 
-# pnpm
-pnpm install
+## Planned features
 
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+1. Account management, registration, password changes
+2. Sharing servers
+3. CDN
