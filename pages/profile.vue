@@ -191,6 +191,10 @@ async function update() {
   await $fetch("/api/user/update", { method: "POST", body });
   user.value = await $fetch("/api/user");
   loading.value = false;
-  router.push('/')
+  router.push('/packs')
 }
+
+useHead({
+  title: "Profile"
+})
 </script>

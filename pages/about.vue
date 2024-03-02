@@ -96,4 +96,8 @@
 definePageMeta({
   layout: false,
 });
+
+useHead({
+  title: "Welcome to Polyengine!"
+})
 </script>

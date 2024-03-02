@@ -178,4 +178,8 @@ const servers: Array<{
   packs: Array<string>;
   accessId: string;
 }> = await $fetch("/api/servers/fetch");
+
+useHead({
+  title: "Servers"
+})
 </script>

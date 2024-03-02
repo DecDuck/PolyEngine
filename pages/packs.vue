@@ -55,4 +55,8 @@ const packs: Array<{
 }> = await $fetch(
   `/api/packs/fetch?servers=${servers.map((e) => e._id).join(",")}`
 );
+
+useHead({
+  title: "Packs"
+})
 </script>

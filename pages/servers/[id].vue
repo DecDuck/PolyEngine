@@ -95,4 +95,8 @@ async function del() {
   await $fetch(`/api/servers/${route.params.id}`, { method: "DELETE" });
   router.push("/servers");
 }
+
+useHead({
+  title: server.name,
+});
 </script>
