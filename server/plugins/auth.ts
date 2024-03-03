@@ -2,7 +2,7 @@ import { User } from "~/models/user";
 import { SALT_ROUNDS, SESSION_SECRET } from "../keys";
 import { hashSync } from "bcrypt";
 
-const whitelist = ["/login", "/api/auth/", "/upload", "/pack.zip", "/about"];
+const whitelist = ["/login", "/api/auth/", "/upload", "/pack.zip", "/about", "/_nuxt"];
 
 export default defineNitroPlugin(async (app) => {
     const noUsers = await User.find().countDocuments() == 0;
@@ -23,13 +23,13 @@ export default defineNitroPlugin(async (app) => {
             });
 
             if (!session.data.userId) {
-                return sendRedirect(h3, '/login');
+                return await sendRedirect(h3, '/login');
             }
 
             const user = await User.findById(session.data.userId);
             if (!user) {
                 await session.clear();
-                return sendRedirect(h3, '/login');
+                return await sendRedirect(h3, '/login');
             }
 
             h3.context.user = user;

@@ -1,4 +1,4 @@
-import { defineMongooseModel } from "#nuxt/mongoose";
+import { defineMongooseModel } from "~/server/plugins/db";
 
 export const User = defineMongooseModel('User', {
     email: {

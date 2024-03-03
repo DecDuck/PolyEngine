@@ -1,4 +1,4 @@
-import { defineMongooseModel } from "#nuxt/mongoose";
+import { defineMongooseModel } from "~/server/plugins/db";
 
 export const Server = defineMongooseModel('Server', {
     name: {
@@ -18,4 +18,4 @@ export const Server = defineMongooseModel('Server', {
         type: String,
         required: true
     }
-})
+});

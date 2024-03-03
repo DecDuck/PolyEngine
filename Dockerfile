@@ -1,16 +1,14 @@
 # set up build environment
-FROM node:hydrogen-alpine3.19 AS build
+FROM node:hydrogen-slim AS build
 
 # build app
-RUN apk add yarn
-RUN apk add python3
 WORKDIR /build
 COPY . .
 RUN yarn
 RUN yarn build
 
 # entry point
-FROM node:hydrogen-alpine3.19
+FROM node:hydrogen-slim
 WORKDIR /app
 COPY --from=build /build/.output .
 ENV PORT=5000

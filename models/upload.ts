@@ -1,4 +1,4 @@
-import { defineMongooseConnection, defineMongooseModel } from "#nuxt/mongoose";
+import { defineMongooseModel } from "~/server/plugins/db";
 
 export const Upload = defineMongooseModel('Upload', {
     objId: {

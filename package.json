@@ -18,8 +18,8 @@
     "bcrypt": "^5.1.1",
     "dom-to-image": "^2.6.0",
     "javascript-time-ago": "^2.5.9",
+    "mongoose": "^8.2.0",
     "nuxt": "^3.10.3",
-    "nuxt-mongoose": "^1.0.5",
     "relative-time-format": "^1.1.6",
     "vue": "^3.4.19",
     "vue-router": "^4.3.0"
