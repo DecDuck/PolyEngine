@@ -1,6 +1,9 @@
 import { S3Client, ListBucketsCommand, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
+import { NodeHttpHandler } from '@aws-sdk/node-http-handler';
 import { Upload } from "~/models/upload";
 import crypto from 'crypto';
+
+import * as https from 'https';
 
 const client = new S3Client({
     endpoint: process.env.S3_ENDPOINT ?? "http://127.0.0.1:9000",
@@ -9,6 +12,12 @@ const client = new S3Client({
         accessKeyId: process.env.S3_ACCESS_ID ?? "minioadmin",
         secretAccessKey: process.env.S3_ACCESS_KEY ?? "minioadmin"
     },
+
+    requestHandler: new NodeHttpHandler({
+        httpsAgent: new https.Agent({
+            rejectUnauthorized: false,
+        }),
+    }),
 });
 const BUCKET = process.env.S3_BUCKET ?? "polyengine";
 
@@ -42,7 +51,7 @@ export async function deleteUpload(upload: any) {
         throw "failed to delete upload object";
     };
 }
-export async function download(key: string){
+export async function download(key: string) {
     const command = new GetObjectCommand({
         Bucket: BUCKET,
         Key: key
