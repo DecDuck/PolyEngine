@@ -32,7 +32,8 @@
               class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
             >
               <form
-                @submit.prevent="() => createNewServer()"
+                ref="createServerForm"
+                @submit.prevent="() => createServerButton?.click()"
                 class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4"
               >
                 <div class="sm:flex sm:items-start">
@@ -76,6 +77,8 @@
                 class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6"
               >
                 <button
+                  ref="createServerButton"
+                  @click="() => createNewServer()"
                   type="submit"
                   class="inline-flex w-full justify-center rounded-md bg-emerald-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 sm:ml-3 sm:w-auto"
                 >
@@ -163,6 +166,7 @@ const open = ref(false);
 const serverName = ref("");
 
 const router = useRouter();
+const createServerButton = ref<HTMLButtonElement>();
 
 async function createNewServer() {
   const response: { id: string } = await $fetch("/api/servers/new", {
@@ -180,6 +184,6 @@ const servers: Array<{
 }> = await $fetch("/api/servers/fetch");
 
 useHead({
-  title: "Servers"
-})
+  title: "Servers",
+});
 </script>

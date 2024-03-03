@@ -1,4 +1,5 @@
 import { Server } from "~/models/server";
+import crypto from 'crypto';
 
 export default defineEventHandler(async (h3) => {
     const body = await readBody(h3);

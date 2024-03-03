@@ -1,5 +1,6 @@
 import { S3Client, ListBucketsCommand, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
 import { Upload } from "~/models/upload";
+import crypto from 'crypto';
 
 const client = new S3Client({
     endpoint: process.env.S3_ENDPOINT ?? "http://127.0.0.1:9000",
