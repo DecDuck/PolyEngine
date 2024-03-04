@@ -52,11 +52,14 @@ const packs: Array<{
   objId: string;
   metadata: { uploaded: string; serverId: string };
   server: { name: string };
-}> = await $fetch(
-  `/api/packs/fetch?servers=${servers.map((e) => e._id).join(",")}`
-);
+}> =
+  servers.length > 0
+    ? await $fetch(
+        `/api/packs/fetch?servers=${servers.map((e) => e._id).join(",")}`
+      )
+    : [];
 
 useHead({
-  title: "Packs"
-})
+  title: "Packs",
+});
 </script>

@@ -35,6 +35,11 @@ export default defineNitroPlugin(async (app) => {
             h3.context.user = user;
         }
 
-        return await handler(h3);
+        try {
+            return await handler(h3);
+        } catch (e) {
+            console.log(e);
+            return sendError(h3, e as Error);
+        }
     }
 })

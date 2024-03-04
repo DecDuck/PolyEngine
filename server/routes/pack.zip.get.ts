@@ -14,5 +14,5 @@ export default defineEventHandler(async (h3) => {
     }
 
     const response = await download(upload.objId as unknown as string);
-    return response.Body?.transformToWebStream();
+    return response;
 });
